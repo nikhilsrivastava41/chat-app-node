@@ -1,3 +1,4 @@
+//var moment = require('moment');
 var socket = io();
 socket.on('connect',function(){
   console.log('connected to server');
@@ -8,10 +9,10 @@ socket.on('disconnect',function(){
 });
 
 socket.on('newMessage', function(message){
-  console.log('New message',message);
+  var formattedTime = moment(message.createdAt).format('h::mm a');
 
   var li =jQuery('<li></li>');
-  li.text(`${message.from}:  ${message.text}`);
+  li.text(`${message.from} ${formattedTime}:  ${message.text}`);
   jQuery('#messages').append(li);
 });
 
