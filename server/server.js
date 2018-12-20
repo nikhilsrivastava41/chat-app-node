@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
     console.log('Message Create',message);
     io.emit('newMessage',generateMessage(message.from , message.text));
 
-    callback('this is form server');
+    callback();
     socket.on('createLocationMessage',(coords)=>{
       io.emit('newLocationMessage',generateLocationMessage('admin',coords.latitude, coords.longitude));
     });
